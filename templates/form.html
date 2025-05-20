@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form</title>
+    <link rel="stylesheet" href="../static/header.css">
+    <link rel="stylesheet" href="../static/form.css">
+  </head>
+  <body>
+    <div class="header">
+      <a class="home-button" href="/">Home</a>
+      <a class="form-button" href="/form">Form</a>
+    </div>
+    {% if update %}
+      <div class="form-container">
+        <form id="form" method="POST" action="/?update={{ index }}">
+
+          <div>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" value="{{ fname }}" placeholder="John" required>
+          </div>
+
+          <br>
+
+          <div>
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" value="{{ lname }}" placeholder="Doe" required>
+          </div>
+
+          <br>
+
+          {% if gender == "Male" %}
+            <div>
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender">
+                <option value="" disabled selected>Select a value</option>
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          {% elif gender == "Female" %}
+            <div>
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender">
+                <option value="" disabled selected>Select a value</option>
+                <option value="Male">Male</option>
+                <option value="Female" selected>Female</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          {% elif gender == "Prefer not to say" %}
+            <div>
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender">
+                <option value="" disabled selected>Select a value</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer not to say" selected>Prefer not to say</option>
+              </select>
+            </div>
+          {% else %}
+            <div>
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender">
+                <option value="" disabled selected>Select a value</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          {% endif %}
+
+          <br>
+
+          <div>
+            <label for="bday">Birthday:</label>
+            <input type="date" id="bday" name="bday" value="{{ bday }}">
+          </div>
+          
+          <br>
+
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ email }}" placeholder="example@domain.com">
+          </div>
+
+          <br>
+
+          <div>
+            <label for="phone">Phone number:</label>
+            <input type="phone" id="phone" name="phone" value="{{ phone }}" placeholder="(123)-456-8949">
+          </div>
+
+          <br>
+
+          <div>
+            <input class="submit-button" type="submit">
+          </div>
+        </form>
+      </div>
+    {% else %}
+      <div class="form-container">
+        <form id="form" method="POST" action="/">
+
+          <div>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" placeholder="John" required>
+          </div>
+
+          <br>
+
+          <div>
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" placeholder="Doe" required>
+          </div>
+
+          <br>
+
+          <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+              <option value="" disabled selected>Select a value</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+
+          <br>
+
+          <div>
+            <label for="bday">Birthday:</label>
+            <input type="date" id="bday" name="bday">
+          </div>
+          
+          <br>
+
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="example@domain.com">
+          </div>
+
+          <br>
+
+          <div>
+            <label for="phone">Phone number:</label>
+            <input type="phone" id="phone" name="phone" placeholder="(123)-456-8949">
+          </div>
+
+          <br>
+
+          <div>
+            <input type="reset">
+          </div>
+
+          <br>
+
+          <div>
+            <input class="submit-button" type="submit">
+          </div>
+        </form>
+      </div>
+    {% endif %}
+  </body>
+</html>

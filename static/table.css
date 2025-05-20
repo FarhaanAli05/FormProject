@@ -1,0 +1,17 @@
+.table {
+  border-spacing: 0;
+  margin: 1rem;
+  background-color: rgb(245, 245, 245);
+}
+
+.table-row:nth-child(even) {
+  background-color: rgb(229, 229, 229);
+}
+
+.table-header {
+  text-align: left;
+}
+
+.table-cell {
+  padding: 8px;
+}

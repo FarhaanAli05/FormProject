@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Data</title>
+    <link rel="stylesheet" href="../static/header.css">
+    <link rel="stylesheet" href="../static/table.css">
+  </head>
+  <body>
+    <div class="header">
+      <a class="home-button" href="/">Home</a>
+      <a class="form-button" href="/form">Form</a>
+    </div>
+    <table class="table">
+      <!-- Printing table headers -->
+      <tr class="table-header">
+        {% for header in table_headers %}
+        <th class="table-cell">{{ header }}</th>
+        {% endfor %}
+      </tr>
+
+      <!-- Printing hard-coded row in table if table is empty -->
+      {% if not table %}
+      <tr class="table-row">
+        <td class="table-cell">John</td>
+        <td class="table-cell">Doe</td>
+        <td class="table-cell">Male</td>
+        <td class="table-cell">01-01-2000</td>
+        <td class="table-cell">johndoe@domain.com</td>
+        <td class="table-cell">123-456-7890</td>
+      </tr>
+      {% else %}
+      <!-- Printing row of values for each row in table -->
+        {% for row in table %}
+        <tr class="table-row">
+          {% for value in row %}
+            <td class="table-cell">{{ row[value] }}</td>
+          {% endfor %}
+          <td>
+            <a href="/?delete={{ loop.index0 }}">Delete</a>
+            <a href="/form?update={{ loop.index0 }}">Update</a>
+          </td>
+        </tr>
+        {% endfor %}
+
+      {% endif %}
+    </table>
+  </body>
+</html>

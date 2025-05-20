@@ -1,0 +1,11 @@
+.header {
+  max-width: 200px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-button {
+  margin-right: 10px;
+}
