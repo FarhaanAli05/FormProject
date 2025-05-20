@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="login-form-container">
+      <form id="login-form" method="POST" action="/">
+        <h1>Login</h1>
+
+        {% if incorrect %}
+          <div style="color: red">Username or password do not match.</div>
+          <br>
+        {% endif %}
+        
+        <div>
+          <label for="username">Enter username:</label>
+          <input type="input" id="username" name="username" placeholder="Username" required>
+        </div>
+
+        <br>
+
+        <div>
+          <label for="password">Enter password:</label>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+
+        <br>
+
+        <div>
+          <input class="submit-button" type="submit">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

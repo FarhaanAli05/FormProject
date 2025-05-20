@@ -36,7 +36,7 @@
             <td class="table-cell">{{ row[value] }}</td>
           {% endfor %}
           <td>
-            <a href="/?delete={{ loop.index0 }}">Delete</a>
+            <a href="/?delete={{ loop.index0 }}" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
             <a href="/form?update={{ loop.index0 }}">Update</a>
           </td>
         </tr>
