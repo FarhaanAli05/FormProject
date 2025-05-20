@@ -57,11 +57,11 @@ def get_form_data():
                 logged_in = True
                 return render_template('table.html', table=table, table_headers=table_headers) # Show them the table (main page) if the user successfully logs in
             else:
-                incorrect = True # Show an incorrect message if the user unsuccessfully logs in
-                return render_template('login.html', incorrect=incorrect)
+                incorrect = True # Show user unauthorized access page if username and password do not match
+                return render_template('unauthorized.html')
         else:
             incorrect = True
-            return render_template('login.html', incorrect=incorrect)
+            return render_template('unauthorized.html')
     # Delete a table row according to its row index
     if request.method == 'GET' and request.args.get('delete'):
         index = request.args.get('delete')
