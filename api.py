@@ -5,6 +5,7 @@ app = Flask(__name__)
 table = []
 table_headers = {"First name": "", "Last name": "", "Gender": "", "Birthday": "", "Email": "", "Phone number": ""}
 logged_in = False
+account_info = {"JohnDoe": "John123"}
 
 @app.route('/form', methods=['GET'])
 def get_form():
@@ -46,22 +47,24 @@ def get_form():
 @app.route('/', methods=['GET', 'POST'])
 def get_form_data():
     global logged_in
-    incorrect = False
+    # If the user chooses to "Create an account", prompt them with the sign up page
+    if request.method == 'GET' and request.args.get('sign_up'):
+        return render_template('sign-up.html')
+    # Add the new account info to the account_info list and prompt the user with the login page
+    if request.method == 'POST' and request.args.get('sign_up'):
+        account_info[request.form.get('username')] = request.form.get('password')
+        return render_template('login.html')
     # If the main page is accessed and the user has not logged in, prompt them with the login menu
     if request.method == 'GET' and logged_in == False:
         return render_template('login.html')
     # If the user attempts to log in...
     if request.method == 'POST' and logged_in == False:
-        if request.form.get('username') == "JohnDoe":
-            if request.form.get('password') == "John123":
-                logged_in = True
-                return render_template('table.html', table=table, table_headers=table_headers) # Show them the table (main page) if the user successfully logs in
-            else:
-                incorrect = True # Show user unauthorized access page if username and password do not match
-                return render_template('unauthorized.html')
-        else:
-            incorrect = True
-            return render_template('unauthorized.html')
+        for key in account_info:
+            if key == request.form.get('username'):
+                if account_info[key] == request.form.get('password'):
+                    logged_in = True
+                    return render_template('table.html', table=table, table_headers=table_headers) # Show them the table (main page) if the user successfully logs in
+        return render_template('unauthorized.html') # Show user unauthorized access page if username and password do not match
     # Delete a table row according to its row index
     if request.method == 'GET' and request.args.get('delete'):
         index = request.args.get('delete')
